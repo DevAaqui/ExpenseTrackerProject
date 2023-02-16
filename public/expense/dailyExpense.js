@@ -46,12 +46,6 @@ function onSubmit()
 
 window.addEventListener('DOMContentLoaded', async (event)=> {
     const token = localStorage.getItem('token')
-    
-    const response2 = await axios.get('http://localhost:3000/purchase/premiummembership', { headers: {'Authorization' :token }})
-    console.log(response2)
-    if(response2.data.message === 'premium user') {
-        premiumUserfunc()
-    }
 
     axios.get('http://localhost:3000/expense/getexpenses', { headers: {"Authorization" : token }})
         .then(response => {
@@ -64,6 +58,14 @@ window.addEventListener('DOMContentLoaded', async (event)=> {
             
         })
         .catch(err=> console.log(err))
+    
+    const response2 = await axios.get('http://localhost:3000/purchase/premiummembership', { headers: {'Authorization' :token }})
+    console.log(response2)
+    if(response2.data.message === 'premium user') {
+        premiumUserfunc()
+    }
+
+    
     
 })
 
